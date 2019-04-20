@@ -4,15 +4,12 @@ var path = require("path");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  entry: {
-    //为了兼容ie加入入口文件babel-polyfill
-    app: ["babel-polyfill", "./examples/main.js"] //指定入口文件
-  },
+
   output: {
     path: path.join(__dirname, "./dist"), //指定输出目录
-    libraryTarget: "umd"
+    libraryTarget: "umd",
+    umdNamedDefine: true
   },
-  stats: { children: false },
   module: {
     rules: [
       {
@@ -36,12 +33,7 @@ module.exports = {
               }
             }
           },
-          {
-            loader: "iview-loader",
-            options: {
-              prefix: false
-            }
-          }
+        
         ]
       },
       {
@@ -51,10 +43,6 @@ module.exports = {
         //include: [path.resolve(__dirname, "src"), path.resolve(__dirname, "node_modules/iview/src")]
       },
 
-      {
-        test: /iview.src.*?js$/,
-        loader: "babel-loader"
-      },
 
       {
         test: /\.less/,
