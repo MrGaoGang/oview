@@ -1,13 +1,11 @@
 {
   "name": "oview",
   "version": "1.0.0",
-  "description": "A Vue.js project by lucky_vue_template",
-  "main": "index.js",
+  "description": "A UI Libary Vue.js project by lucky_vue_template",
+  "main": "./dist/oview.min.js",
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.config.js",
-    "build": " webpack --progress --hide-modules --config webpack.prod.config.js",
-    "lib": "webpack --target lib --name uview --dest lib src/index.js"
-
+    "build": " webpack --progress --hide-modules --config webpack.prod.config.js"
   },
   "repository": {
     "type": "git",
