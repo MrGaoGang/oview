@@ -39,7 +39,7 @@ module.exports = merge(webpackBaseConfig, {
     new clearWebpack(), //构建生产环境包的时候清空dist目录
     new ExtractTextPlugin({
       //将所有的样式合并为一个css文件
-      filename: "./css/[name].[hash].css",
+      filename: "./css/index.css",
       allChunks: true
     }),
     new webpack.DefinePlugin({

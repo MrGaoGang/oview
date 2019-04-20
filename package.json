@@ -1,6 +1,6 @@
 {
   "name": "oview",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A UI Library Vue.js project by lucky_vue_template",
   "main": "./dist/oview.min.js",
   "scripts": {
@@ -16,6 +16,15 @@
   "bugs": {
     "url": "https://github.com/MrGaoGang/oview/issues"
   },
+  "keywords": [
+    "oview",
+    "vue",
+    "vue.js",
+    "component",
+    "components",
+    "ui",
+    "framework"
+  ],
   "homepage": "https://github.com/MrGaoGang/oview#readme",
   "devDependencies": {
     "@babel/core": "^7.3.4",
