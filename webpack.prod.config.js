@@ -1,6 +1,4 @@
 var webpack = require("webpack");
-//打包时会自动生成index.html并替换已有的index.html，bundle.js也会自行添加到 html 中
-var HtmlwebpackPlugin = require("html-webpack-plugin");
 //将css合并为一个css文件
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 //避免重复配置webpack,静基础配置和生产配置融合
@@ -15,23 +13,28 @@ var OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 var CompressionWebpackPlugin = require("compression-webpack-plugin");
 
-var productionGzipExtensions = ['js', 'css','html']
+var productionGzipExtensions = ["js", "css", "html"];
 
 webpackBaseConfig.plugins = [];
 module.exports = merge(webpackBaseConfig, {
   mode: "production", //当前模式
   output: {
-    libraryTarget: "umd", //输出为umd格式
-    filename: "./js/[name].[hash].js", //输出文件名
-    chunkFilename: "./js/[name].[hash].chunk.js"
+    filename: "./oview.min.js", //输出文件名
+    library: "oview"
   },
-
-  optimization:{
-    splitChunks:{
-      chunks:"all",
-      minSize:2000
+  devtool:"source-map",
+  externals: {
+    vue: {
+      root: "Vue",
+      commonjs: "vue",
+      commonjs2: "vue",
+      amd: "vue"
     }
   },
+  entry: {
+    main: "./src/index.js"
+  },
+
   plugins: [
     new clearWebpack(), //构建生产环境包的时候清空dist目录
     new ExtractTextPlugin({
@@ -46,34 +49,6 @@ module.exports = merge(webpackBaseConfig, {
       }
     }),
 
-    new HtmlwebpackPlugin({
-      //指定构建生成之后的html
-      filename: "index.html", //此文件路径是相对于dist,
-      template: "index.html",
-      inject: true,
-      minify: {
-        // 移除注释
-        removeComments: true,
-        // 不要留下任何空格
-        collapseWhitespace: true,
-        // 当值匹配默认值时删除属性
-        removeRedundantAttributes: true,
-        // 使用短的doctype替代doctype
-        useShortDoctype: true,
-        // 移除空属性
-        removeEmptyAttributes: true,
-        // 从style和link标签中删除type="text/css"
-        removeStyleLinkTypeAttributes: true,
-        // 保留单例元素的末尾斜杠。
-        keepClosingSlash: true,
-        // 在脚本元素和事件属性中缩小JavaScript(使用UglifyJS)
-        minifyJS: true,
-        // 缩小CSS样式元素和样式属性
-        minifyCSS: true,
-        // 在各种属性中缩小url
-        minifyURLs: true
-      }
-    }),
     new VueLoaderPlugin(), //使用vue必须要加的哦
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /\.css$/g,
@@ -93,13 +68,13 @@ module.exports = merge(webpackBaseConfig, {
       canPrint: true
     }),
 
-    new CompressionWebpackPlugin({//开启gzip压缩,防止verndor文件过大
-      filename: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),//只有配置的文件才会被压缩
-      threshold: 10240,//只处理大于此大小的文件。以字节为单位(此处为10k)
-      minRatio: 0.8,//压缩比例
-      deleteOriginalAssets:true//是否删除原始文件
+    new CompressionWebpackPlugin({
+      //开启gzip压缩,防止verndor文件过大
+      filename: "[path].gz[query]",
+      algorithm: "gzip",
+      test: new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"), //只有配置的文件才会被压缩
+      threshold: 10240, //只处理大于此大小的文件。以字节为单位(此处为10k)
+      minRatio: 0.8, //压缩比例
     })
   ]
 });
