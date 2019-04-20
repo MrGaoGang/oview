@@ -1,7 +1,7 @@
 {
   "name": "oview",
   "version": "1.0.0",
-  "description": "A UI Libary Vue.js project by lucky_vue_template",
+  "description": "A UI Library Vue.js project by lucky_vue_template",
   "main": "./dist/oview.min.js",
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.config.js",
