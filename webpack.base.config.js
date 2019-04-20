@@ -4,7 +4,6 @@ var path = require("path");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-
   output: {
     path: path.join(__dirname, "./dist"), //指定输出目录
     libraryTarget: "umd",
@@ -29,11 +28,14 @@ module.exports = {
                 css: ExtractTextPlugin.extract({
                   use: "css-loader",
                   fallback: "vue-style-loader"
-                })
+                }),
+                less:ExtractTextPlugin.extract({
+                  use: "less-loader",
+                  fallback: "vue-style-loader"
+                }) 
               }
             }
-          },
-        
+          }
         ]
       },
       {
@@ -43,37 +45,49 @@ module.exports = {
         //include: [path.resolve(__dirname, "src"), path.resolve(__dirname, "node_modules/iview/src")]
       },
 
-
       {
-        test: /\.less/,
-        use: ExtractTextPlugin.extract({
-          use: ["less-loader"],
-          fallback: "style-loader"
-        })
+        test: /\.less$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: "less-loader",
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         //此处配置为iview的注意点，如果不配置的话 无法再Js文件中加载iview.css文件；其次如果使用url-loader无法加载的话，会使用file-loader进行文件加载
         test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
         loader: "url-loader?limit=1024",
-        options:{
+        options: {
           limit: 10000,
-          name: 'img/[name].[hash].[ext]'
+          name: "img/[name].[hash].[ext]"
         }
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 10000,
-          name: 'media/[name].[hash].[ext]'
+          name: "media/[name].[hash].[ext]"
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 10000,
-          name: 'fonts/[name].[hash].[ext]'
+          name: "fonts/[name].[hash].[ext]"
         }
       },
       {
