@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+
     <Demo msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
