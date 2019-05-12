@@ -5,7 +5,6 @@
       width: width + 'px',
       height: height + 'px'
     }"
- 
   >
     <canvas ref="chart" height="300" class="noselect"></canvas>
     <slot></slot>
@@ -82,6 +81,9 @@ export default {
       immediate: true,
       handler(val) {
         this.datas = val;
+        if (this.chart != null) {
+          this.changeData();
+        }
       }
     }
   },
@@ -103,7 +105,7 @@ export default {
     },
     changeData() {
       //修改数据
-      this.chart.changeData(this.data);
+      this.chart.changeData(this.chartData);
     },
     repaint() {
       //重新绘制
@@ -174,16 +176,16 @@ export default {
     },
     reRender() {
       if (this.chart != null) {
-        this.render();
+        window.location.reload();
       }
     }
   },
   mounted() {
     this.render();
-    window.addEventListener("resize", this.render);
+    window.addEventListener("resize", this.reRender);
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.render);
+    window.removeEventListener("resize", this.reRender);
   }
 };
 </script>
