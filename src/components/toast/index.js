@@ -3,7 +3,7 @@ import Vue from "vue";
 
 let defaultParams = {
     duration: 1.5,
-    message: "Hello uview！"
+    message: "Hello oview！"
 }
 let instance;
 let showToast = function (type, options) {

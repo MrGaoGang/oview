@@ -1,9 +1,12 @@
 import Toast from "./components/toast";
-
+import Chart from "./components/chart/Chart";
+import Pie from "./components/chart/Pie";
 
 
 const oView = {
-    Toast
+    Toast,
+    Chart,
+    Pie
 };
 
 

@@ -15,13 +15,6 @@ module.exports = {
     "@babel/plugin-transform-runtime",
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-proposal-object-rest-spread",
-    "transform-vue-jsx",
-    [
-      "import",
-      {
-        libraryName: "iview",
-        libraryDirectory: "src/components"
-      }
-    ]
+    "transform-vue-jsx"
   ]
 };
