@@ -13,7 +13,7 @@
 
 <script>
 import F2 from "@antv/f2/lib/index-all";
-import { renderPie } from "./utils/utils.js";
+import { renderPie, renderHistogram } from "./utils/utils.js";
 import { CHART_TYPE, COLORS } from "./utils/constants.js";
 const Util = F2.Util;
 export default {
@@ -36,12 +36,15 @@ export default {
       type: String,
       required: true
     },
+    position: {
+      type: String
+    },
     legend: {
       //是否显示图例
       type: Object,
       default: function() {
         return {
-          disable: false,
+          disable: true,
           config: {}
         };
       }
@@ -121,7 +124,21 @@ export default {
       // this.render();
       //设置图形
       if (type == CHART_TYPE.pie) {
-        renderPie(this.chart, this.colors, this.fieldName, options);
+        renderPie(
+          this.chart,
+          this.colors,
+          this.position,
+          this.fieldName,
+          options
+        );
+      } else if (type == CHART_TYPE.histogram) {
+        renderHistogram(
+          this.chart,
+          this.colors,
+          this.position,
+          this.fieldName,
+          options
+        );
       }
 
       this.setLegend();
@@ -146,7 +163,7 @@ export default {
     setTooltip() {
       //设置图例
       if (this.tooltip) {
-        if (!Util.isNil(this.tooltip.disable)) {
+        if (!Util.isNil(this.tooltip.disable) && this.tooltip.disable) {
           this.chart.tooltip(false);
         } else {
           if (Util.isObject(this.tooltip.config)) {

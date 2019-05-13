@@ -3,8 +3,12 @@
 </template>
 
 <script>
-import { CHART_TYPE } from "./utils/constants";
+import mixin from "./utils/mixin.js";
+import {
+    CHART_TYPE
+} from "./utils/constants";
 export default {
+  mixins: [mixin],
   props: {
     coord: {
       type: Object,
@@ -17,16 +21,12 @@ export default {
         };
       }
     },
-    colors: Object, //颜色
-    options: Object, //一些额外的配置
     pieLabel: {
       type: Object
     }
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.$parent.setChart(CHART_TYPE.pie, Object.assign({}, this.$props));
-    });
+  mounted(){
+    this.gotoChart(CHART_TYPE.pie)
   }
 };
 </script>

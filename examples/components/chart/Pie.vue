@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import Chart from "../../../src/components/chart/Chart";
-import Pie from "../../../src/components/chart/Pie";
+
+import { Chart, Pie } from "../../../src/index.js";
 
 export default {
   components: {
@@ -120,11 +120,5 @@ export default {
 
 <style>
 
-.item-desc{
-  font-size: 16px;
-  font-weight: bold;
-  border-width: 0px;
-  border-left: 10px solid #1890FF;
-  padding-left: 10px;
-}
+
 </style>

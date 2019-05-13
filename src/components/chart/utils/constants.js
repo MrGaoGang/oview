@@ -1,5 +1,6 @@
  const CHART_TYPE = {
-     pie: "pie"
+     pie: "pie",
+     histogram:"histogram"
  }
 
  const COLORS = [

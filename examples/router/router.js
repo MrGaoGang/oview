@@ -7,9 +7,9 @@ const routes = [{
         component: () => import("../components/Home")
     },
     {
-        path: '/chart',
-        name: "Chart",
-        component: () => import("../components/Chart")
+        path: '/histo',
+        name: "histo",
+        component: () => import("../components/chart/Histogram")
     },
     {
         path: '/pie',

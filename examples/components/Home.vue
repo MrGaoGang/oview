@@ -15,6 +15,11 @@ const datas = [
     title: "饼状图",
     img: require("./images/pie.png"),
     router: "/pie"
+  },
+  {
+     title: "柱状图",
+    img: require("./images/zhuzhuangtu.png"),
+    router: "/histo"
   }
 ];
 export default {
@@ -27,7 +32,7 @@ export default {
 </script>
 
 <style >
-.nav__item {
+.mobile-nav__item{
   margin-bottom: 16px;
 }
 
