@@ -143,8 +143,8 @@ module.exports = {
 
         new HtmlwebpackPlugin({
             //指定构建生成之后的html
-            filename: "../index.html", //此文件路径是相对于dist,
-            template: "index_dev.html",
+            filename: "index.html", //此文件路径是相对于dist,
+            template: "index.html",
             inject: true,
             minify: {
                 // 移除注释
