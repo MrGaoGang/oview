@@ -5,7 +5,9 @@
   "main": "./dist/oview.min.js",
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.config.js",
-    "build": " webpack --progress --hide-modules --config webpack.prod.config.js"
+    "build": " webpack --progress --hide-modules --config webpack.prod.config.js",
+    "demo": " webpack --progress --hide-modules --config webpack.demo.config.js"
+
   },
   "repository": {
     "type": "git",
