@@ -117,8 +117,8 @@ module.exports = {
     output: {
         path: path.join(__dirname, "./docs"), //指定输出目录
         libraryTarget: "umd", //输出为umd格式
-        filename: "./js/[name].[hash].js", //输出文件名
-        chunkFilename: "./js/[name].[hash].chunk.js"
+        filename: "js/[name].[hash].js", //输出文件名
+        chunkFilename: "js/[name].[hash].chunk.js"
     },
 
     optimization: {
@@ -131,7 +131,7 @@ module.exports = {
         new clearWebpack(), //构建生产环境包的时候清空dist目录
         new ExtractTextPlugin({
             //将所有的样式合并为一个css文件
-            filename: "./css/[name].[hash].css",
+            filename: "css/[name].[hash].css",
             allChunks: true
         }),
         new webpack.DefinePlugin({
@@ -143,8 +143,8 @@ module.exports = {
 
         new HtmlwebpackPlugin({
             //指定构建生成之后的html
-            filename: "index.html", //此文件路径是相对于dist,
-            template: "index.html",
+            filename: "../index.html", //此文件路径是相对于dist,
+            template: "index_dev.html",
             inject: true,
             minify: {
                 // 移除注释
