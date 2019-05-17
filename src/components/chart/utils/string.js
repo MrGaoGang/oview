@@ -13,7 +13,31 @@ function isEmpty(obj) {
     return false;
 }
 
+/**
+ * 获取Y轴
+ * @param {*} position 
+ */
+function getY(position) {
+    if (position.indexOf("*") != -1) {
+        return position.substring(position.indexOf("*")+1);
+    } else {
+        return null;
+    }
+}
+/**
+ * 获取X轴
+ * @param {*} position 
+ */
+function getX(position) {
+    if (position.indexOf("*") != -1) {
+        return position.substring(0, position.indexOf("*"));
+    } else {
+        return position;
+    }
+}
 
 export {
-    isEmpty
+    isEmpty,
+    getX,
+    getY
 }

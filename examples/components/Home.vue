@@ -20,6 +20,16 @@ const datas = [
      title: "柱状图",
     img: require("./images/zhuzhuangtu.png"),
     router: "/histo"
+  },
+   {
+     title: "折线图",
+    img: require("./images/line.png"),
+    router: "/line"
+  },
+  {
+     title: "雷达图",
+    img: require("./images/radar.png"),
+    router: "/radar"
   }
 ];
 export default {

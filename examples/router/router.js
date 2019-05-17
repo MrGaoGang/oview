@@ -15,7 +15,17 @@ const routes = [{
         path: '/pie',
         name: "Pie",
         component: () => import("../components/chart/Pie")
+    },{
+        path: '/line',
+        name: "Line",
+        component: () => import("../components/chart/Line")
+    },
+    {
+        path: '/radar',
+        name: "Radar",
+        component: () => import("../components/chart/Radar")
     }
+
 ]
 
 export default new VueRouter({

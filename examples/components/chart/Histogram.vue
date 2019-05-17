@@ -1,27 +1,28 @@
 <template>
   <div>
     <p class="item-desc">普通的柱状图</p>
-    <o-chart :data="data" :tooltip="tooltip" :position="'year*sales'" :fieldName="'year'">
+    <o-chart :data="data" :tooltip="tooltip" :position="'year*sales'" >
       <o-histogram></o-histogram>
     </o-chart>
 
     <p class="item-desc">分组柱状图</p>
-    <o-chart :data="groupData" :position="'月份*月均降雨量'" :fieldName="'name'">
+    <o-chart :data="groupData" :position="'月份*月均降雨量'" :color-field="'name'">
       <o-histogram :adjust="adjust"></o-histogram>
     </o-chart>
 
     <p class="item-desc">层叠柱状图</p>
-    <o-chart :data="groupData" :position="'月份*月均降雨量'" :fieldName="'name'">
+    <!-- 不设置color field默认为x轴的 -->
+    <o-chart :data="groupData" :position="'月份*月均降雨量'"  :color-field="'name'">
       <o-histogram :adjust="ceAdjust"></o-histogram>
     </o-chart>
 
     <p class="item-desc">区间柱状图</p>
-    <o-chart :data="betweenData" :tooltip="betweenTip" :position="'x*y'" :fieldName="'x'">
+    <o-chart :data="betweenData" :tooltip="betweenTip" :position="'x*y'" >
       <o-histogram></o-histogram>
     </o-chart>
 
     <p class="item-desc">基础条形图</p>
-    <o-chart :data="data" :tooltip="tooltip" :position="'year*sales'" :fieldName="'year'">
+    <o-chart :data="data" :tooltip="tooltip" :position="'year*sales'" >
       <o-histogram :coord="{options:{transposed: true}}"></o-histogram>
     </o-chart>
   </div>

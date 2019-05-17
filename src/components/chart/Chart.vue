@@ -13,7 +13,8 @@
 
 <script>
 import F2 from "@antv/f2/lib/index-all";
-import { renderPie, renderHistogram } from "./utils/utils.js";
+import { getX ,isEmpty} from "./utils/string";
+import { renderPie, renderHistogram, renderLine } from "./utils/utils.js";
 import { CHART_TYPE, COLORS } from "./utils/constants.js";
 const Util = F2.Util;
 export default {
@@ -32,12 +33,11 @@ export default {
       type: Boolean,
       default: false
     },
-    fieldName: {
+
+    position: {
+      //x轴和y轴
       type: String,
       required: true
-    },
-    position: {
-      type: String
     },
     legend: {
       //是否显示图例
@@ -56,6 +56,9 @@ export default {
         return COLORS;
       }
     },
+    colorField: {//给哪个度量值设置颜色
+      type: String
+    },
     tooltip: {
       //是否显示提示信息
       type: Object,
@@ -70,6 +73,13 @@ export default {
       //数据源
       type: Array,
       required: true
+    },
+    colDefs: {
+      //提供的数据源，每一个字段的配置
+      type: Object,
+      default: function() {
+        return {};
+      }
     }
   },
 
@@ -100,6 +110,13 @@ export default {
         });
       }
       return this.data;
+    },
+    colorFieldName() {
+      //得到给哪个度量值设置颜色，默认为X轴
+      if(isEmpty(this.colorField)){
+        return getX(this.position)
+      }
+      return this.colorField;
     }
   },
   methods: {
@@ -122,29 +139,32 @@ export default {
       //根据不同类型，绘制不同的图形
       this.chartType = type;
       // this.render();
+      let params = {
+        chart: this.chart,
+        colors: this.colors,
+        position: this.position,
+        colorFieldName: this.colorFieldName,
+        options: options
+      };
+
       //设置图形
-      if (type == CHART_TYPE.pie) {
-        renderPie(
-          this.chart,
-          this.colors,
-          this.position,
-          this.fieldName,
-          options
-        );
-      } else if (type == CHART_TYPE.histogram) {
-        renderHistogram(
-          this.chart,
-          this.colors,
-          this.position,
-          this.fieldName,
-          options
-        );
+      switch (type) {
+        case CHART_TYPE.pie:
+          renderPie(params);
+          break;
+        case CHART_TYPE.histogram:
+          renderHistogram(params);
+          break;
+
+        case CHART_TYPE.line:
+          renderLine(params);
+          break;
       }
 
       this.setLegend();
       this.setTooltip();
 
-      this.chart.source(this.chartData);
+      this.chart.source(this.chartData, this.colDefs);
       this.chart.render();
     },
     setLegend() {
@@ -154,7 +174,7 @@ export default {
           this.chart.legend(false);
         } else {
           if (Util.isObject(this.legend.config)) {
-            this.chart.legend(this.fieldName, this.legend.config);
+            this.chart.legend(getX(this.position), this.legend.config);
           }
         }
       }

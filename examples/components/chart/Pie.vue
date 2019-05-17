@@ -1,24 +1,23 @@
 <template>
   <div>
     <p class="item-desc">普通的饼状图</p>
-    <o-chart :data="data" :legend="legend" :fieldName="'name'">
+    <o-chart :data="data" :legend="legend" :position="'name*percent'">
       <o-pie></o-pie>
     </o-chart>
 
     <p class="item-desc">有内圆半径的饼状图</p>
-    <o-chart :data="data" :legend="legend" :fieldName="'name'">
+    <o-chart :data="data" :legend="legend" :position="'name*percent'">
       <o-pie :coord="coord"></o-pie>
     </o-chart>
 
     <p class="item-desc">可点击的饼状图</p>
-    <o-chart :data="data" :legend="legend" :fieldName="'name'">
+    <o-chart :data="data" :legend="legend" :position="'name*percent'">
       <o-pie :pie-label="pieLabel()" :coord="coord"></o-pie>
     </o-chart>
   </div>
 </template>
 
 <script>
-
 import { Chart, Pie } from "../../../src/index.js";
 
 export default {
@@ -119,6 +118,4 @@ export default {
 </script>
 
 <style>
-
-
 </style>
