@@ -4,6 +4,10 @@ import {
     getY
 } from "./string"
 
+
+/**
+ * 渲染饼状图
+ */
 function renderPie({
     chart,
     colors,
@@ -31,18 +35,15 @@ function renderPie({
             stroke: '#fff',
             lineJoin: 'round',
             lineCap: 'round'
-        });
+        }).style(options.chartStyle);
 
-    if (!isEmpty(options.animation)) {
-        chart.animate(options.animation);
-    } else {
-        chart.animate({
-            appear: {
-                duration: 1200,
-                easing: 'bounceOut'
-            }
-        });
-    }
+    chart.animate(!isEmpty(options.animate) ? options.animate : {
+        appear: {
+            duration: 1200,
+            easing: 'bounceOut'
+        }
+    });
+
     if (options.pieLabel != null) {
         chart.pieLabel(options.pieLabel);
     }
@@ -78,16 +79,14 @@ function renderHistogram({
         obj.adjust(options.adjust);
     }
 
-    if (!isEmpty(options.animation)) {
-        obj.animate(options.animation);
-    } else {
-        obj.animate({
-            appear: {
-                duration: 500,
-                easing: 'groupScaleInY'
-            }
-        });
-    }
+    obj.animate(!isEmpty(options.animate) ? options.animate : {
+        appear: {
+            duration: 500,
+            easing: 'groupScaleInY'
+        }
+    }).style(options.chartStyle)
+
+
 
 
 }
@@ -106,30 +105,61 @@ function renderLine({
     options
 }) {
 
-
-    if (!isEmpty(options.axis.fieldName) && !isEmpty(options.axis.config)) {
-        chart.axis(options.axis.fieldName, options.axis.config);
-    }
-
-
     chart.line({
         connectNulls: true // 配置，连接空值数据
-    }).position(position).shape(options.shape);
+    }).position(position).shape(options.shape).animate(options.animate).style(options.chartStyle);
     if (options.type == "point") {
-        chart.point().position(position).shape(options.shape);
+        chart.point().position(position).shape(options.shape).animate(options.animate).style(options.chartStyle);
+    }
+}
+
+/**
+ * 渲染雷达图
+ */
+function renderRadar({
+    chart,
+    colors,
+    position,
+    colorFieldName,
+    options
+}) {
+    chart.coord('polar');
+    if (options.isArea) {
+        chart.area().position(position).style(options.chartStyle).color(colorFieldName).animate(options.animate);
     }
 
-    if (!isEmpty(options.animation)) {
-        chart.animate(options.animation);
-    }
+    if (!options.customDefine) {
 
+        chart.line().position(position).color(colorFieldName).animate(options.animate);
+        chart.point().position(position).color(colorFieldName, colors).animate(options.animate).style(options.chartStyle);
+    }
 
 }
 
+/**
+ * 渲染散点图
+ * @param {*} param0 
+ */
+function renderPoint({
+    chart,
+    colors,
+    position,
+    colorFieldName,
+    options
+}) {
 
+  let obj=  chart.point().position(position);
+
+  if(!isEmpty(options.size.fieldName)){
+      obj.size(options.size.fieldName,options.size.callback());
+  }
+  obj.shape(options.shape).color(colorFieldName, colors).animate(options.animate).style(options.chartStyle);
+}
 
 export {
     renderPie,
     renderHistogram,
-    renderLine
+    renderLine,
+    renderRadar,
+    renderPoint
 }

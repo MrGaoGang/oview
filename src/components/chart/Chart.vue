@@ -13,9 +13,15 @@
 
 <script>
 import F2 from "@antv/f2/lib/index-all";
-import { getX ,isEmpty} from "./utils/string";
-import { renderPie, renderHistogram, renderLine } from "./utils/utils.js";
-import { CHART_TYPE, COLORS } from "./utils/constants.js";
+import { getX, isEmpty } from "./utils/string";
+import {
+  renderPie,
+  renderHistogram,
+  renderLine,
+  renderRadar,
+  renderPoint
+} from "./utils/render.js";
+import { CHART_TYPE } from "./utils/constants.js";
 const Util = F2.Util;
 export default {
   props: {
@@ -24,48 +30,39 @@ export default {
       type: Number,
       default: 300
     },
+    chartConfig: {
+      type: Object
+    },
     backgroundColor: {
       type: String,
       default: "#fff"
     },
-    preventRender: {
-      //是否自定义render
-      type: Boolean,
-      default: false
+
+    customRender: {
+      //是否自定义render，类型有:prevent，完全自定义,extra：在已有渲染的基础上自定义
+      type: String,
+      default: null,
+      valiator: function(val) {
+        return [null, "prevent", "extra"].indexOf(val) != -1;
+      }
     },
 
-    position: {
-      //x轴和y轴
-      type: String,
-      required: true
-    },
     legend: {
       //是否显示图例
       type: Object,
       default: function() {
         return {
-          disable: true,
-          config: {}
+          disable: true
         };
       }
     },
-    colors: {
-      //颜色的配置
-      type: Array,
-      default: function() {
-        return COLORS;
-      }
-    },
-    colorField: {//给哪个度量值设置颜色
-      type: String
-    },
+
     tooltip: {
       //是否显示提示信息
       type: Object,
       default: function() {
         return {
-          disable: true, //默认不显示提示信息
-          config: {}
+          disable: true //默认不显示提示信息
         };
       }
     },
@@ -86,7 +83,8 @@ export default {
   data() {
     return {
       chartType: "", //图表的类型
-      datas: this.data
+      datas: this.data,
+      position: null
     };
   },
   watch: {
@@ -110,13 +108,6 @@ export default {
         });
       }
       return this.data;
-    },
-    colorFieldName() {
-      //得到给哪个度量值设置颜色，默认为X轴
-      if(isEmpty(this.colorField)){
-        return getX(this.position)
-      }
-      return this.colorField;
     }
   },
   methods: {
@@ -132,18 +123,20 @@ export default {
       this.chart.repaint();
     },
     setChart(type, options) {
-      if (this.preventRender) {
+      let chart = this.chart;
+      this.position = options.position;
+      if (this.customRender === "prevent") {
         this.$emit("on-render", { chart });
         return;
       }
       //根据不同类型，绘制不同的图形
       this.chartType = type;
-      // this.render();
+
       let params = {
-        chart: this.chart,
-        colors: this.colors,
-        position: this.position,
-        colorFieldName: this.colorFieldName,
+        chart: chart,
+        colors: options.colors,
+        position: options.position,
+        colorFieldName: this.colorFieldName(options.colorField),
         options: options
       };
 
@@ -159,22 +152,45 @@ export default {
         case CHART_TYPE.line:
           renderLine(params);
           break;
+        case CHART_TYPE.radar:
+          renderRadar(params);
+          break;
+        case CHART_TYPE.point:
+          renderPoint(params);
+          break;
       }
 
+      if (type != CHART_TYPE.pie) {
+        if (options.axis.length > 0) {
+          options.axis.forEach(element => {
+            if (!isEmpty(element.fieldName)) {
+              chart.axis(element.fieldName, element);
+            }
+          });
+        }
+      }
       this.setLegend();
       this.setTooltip();
 
-      this.chart.source(this.chartData, this.colDefs);
-      this.chart.render();
+      chart.source(this.chartData, this.colDefs);
+      if (this.customRender === "extra") {
+        this.$emit("on-render", { chart });
+      }
+      chart.render();
     },
     setLegend() {
       //设置图例
       if (this.legend) {
-        if (!Util.isNil(this.legend.disable) && this.legend.disable) {
+        if (!isEmpty(this.legend.disable) && this.legend.disable) {
           this.chart.legend(false);
         } else {
-          if (Util.isObject(this.legend.config)) {
-            this.chart.legend(getX(this.position), this.legend.config);
+          if (Util.isObject(this.legend)) {
+            //legend默认使用X轴
+            if (isEmpty(this.legend.fieldName)) {
+              this.chart.legend(getX(this.position), this.legend);
+            } else {
+              this.chart.legend(this.legend.fieldName, this.legend);
+            }
           }
         }
       }
@@ -183,11 +199,11 @@ export default {
     setTooltip() {
       //设置图例
       if (this.tooltip) {
-        if (!Util.isNil(this.tooltip.disable) && this.tooltip.disable) {
+        if (!isEmpty(this.tooltip.disable) && this.tooltip.disable) {
           this.chart.tooltip(false);
         } else {
-          if (Util.isObject(this.tooltip.config)) {
-            this.chart.tooltip(this.tooltip.config);
+          if (Util.isObject(this.tooltip)) {
+            this.chart.tooltip(this.tooltip);
           }
         }
       }
@@ -201,13 +217,9 @@ export default {
         el: this.$refs.chart,
         width: this.width || windowWidth,
         height: this.height ? this.height : 300,
-        pixelRatio: this.$devicePixelRatio || window.devicePixelRatio
+        pixelRatio: this.$devicePixelRatio || window.devicePixelRatio,
+        ...this.chartConfig
       });
-      //如果需要自定义渲染表格的话
-      if (this.preventRender) {
-        this.$emit("on-render", { chart });
-        return;
-      }
 
       this.chart = chart;
     },
@@ -215,6 +227,13 @@ export default {
       if (this.chart != null) {
         window.location.reload();
       }
+    },
+    colorFieldName(colorField) {
+      //得到给哪个度量值设置颜色，默认为X轴
+      if (isEmpty(colorField)) {
+        return getX(this.position);
+      }
+      return colorField;
     }
   },
   mounted() {

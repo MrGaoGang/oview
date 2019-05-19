@@ -1,25 +1,25 @@
 <template>
   <div>
     <p class="item-desc">普通的饼状图</p>
-    <o-chart :data="data" :legend="legend" :position="'name*percent'">
-      <o-pie></o-pie>
+    <o-chart :data="data" :legend="legend">
+      <o-pie position="name*percent"></o-pie>
     </o-chart>
 
     <p class="item-desc">有内圆半径的饼状图</p>
-    <o-chart :data="data" :legend="legend" :position="'name*percent'">
-      <o-pie :coord="coord"></o-pie>
+    <o-chart :data="data" :legend="legend">
+      <o-pie :coord="coord" position="name*percent"></o-pie>
     </o-chart>
 
     <p class="item-desc">可点击的饼状图</p>
-    <o-chart :data="data" :legend="legend" :position="'name*percent'">
-      <o-pie :pie-label="pieLabel()" :coord="coord"></o-pie>
+    <o-chart :data="data" :legend="legend">
+      <o-pie :pie-label="pieLabel()" :coord="coord" position="name*percent"></o-pie>
     </o-chart>
   </div>
 </template>
 
 <script>
 import { Chart, Pie } from "../../../src/index.js";
-
+import { PIE } from "../utils/data";
 export default {
   components: {
     "o-chart": Chart,
@@ -27,39 +27,11 @@ export default {
   },
   data() {
     return {
-      data: [
-        {
-          name: "芳华",
-          percent: 0.4
-        },
-        {
-          name: "妖猫传",
-          percent: 0.2
-        },
-        {
-          name: "机器之血",
-          percent: 0.18
-        },
-        {
-          name: "心理罪",
-          percent: 0.15
-        },
-        {
-          name: "寻梦环游记",
-          percent: 0.05
-        },
-        {
-          name: "其他",
-          percent: 0.02
-        }
-      ],
+      data: PIE.data,
       legend: {
-        disable: false, //是否不可用
-        config: {
-          position: "top",
-          align: "center" // align只有当position为top何bottom时有效
-          //verticalAlign:"middle",
-        }
+        position: "top",
+        align: "center" // align只有当position为top何bottom时有效
+        //verticalAlign:"middle",
       },
       coord: {
         coordType: "polar",

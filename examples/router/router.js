@@ -15,7 +15,7 @@ const routes = [{
         path: '/pie',
         name: "Pie",
         component: () => import("../components/chart/Pie")
-    },{
+    }, {
         path: '/line',
         name: "Line",
         component: () => import("../components/chart/Line")
@@ -24,6 +24,11 @@ const routes = [{
         path: '/radar',
         name: "Radar",
         component: () => import("../components/chart/Radar")
+    },
+    {
+        path: '/point',
+        name: "Point",
+        component: () => import("../components/chart/Point")
     }
 
 ]

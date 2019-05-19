@@ -17,19 +17,24 @@ const datas = [
     router: "/pie"
   },
   {
-     title: "柱状图",
+    title: "柱状图",
     img: require("./images/zhuzhuangtu.png"),
     router: "/histo"
   },
-   {
-     title: "折线图",
+  {
+    title: "折线图",
     img: require("./images/line.png"),
     router: "/line"
   },
   {
-     title: "雷达图",
+    title: "雷达图",
     img: require("./images/radar.png"),
     router: "/radar"
+  },
+  {
+    title: "散点图/气泡图",
+    img: require("./images/point.png"),
+    router: "/point"
   }
 ];
 export default {
@@ -42,7 +47,7 @@ export default {
 </script>
 
 <style >
-.mobile-nav__item{
+.mobile-nav__item {
   margin-bottom: 16px;
 }
 

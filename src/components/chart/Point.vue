@@ -1,33 +1,21 @@
 <template></template>
 
-
 <script>
 import mixin from "./utils/mixin";
 import { CHART_TYPE } from "./utils/constants";
-
 export default {
   mixins: [mixin],
   props: {
  
-    type: {
-      type: String,
-      default() {
-        return "line";
-      },
-      validator: function(val) {
-        return ["line", "point"].indexOf(val) != -1;
-      }
-    },
-
     shape: {
       type: String,
       default() {
-        return "line";
+        return "circle";
       }
     }
   },
   mounted() {
-    this.gotoChart(CHART_TYPE.line);
+    this.gotoChart(CHART_TYPE.point);
   }
 };
 </script>

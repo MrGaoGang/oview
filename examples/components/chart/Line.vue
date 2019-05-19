@@ -2,45 +2,25 @@
   <div>
     <div>
       <p class="item-desc">普通的折线图</p>
-      <o-chart
-        :data="normalData"
-        :col-defs="normaColConfig"
-        :position="'date*value'"
-        :tooltip="normalTootip"
-      >
-        <o-line :axis="normaAxis"></o-line>
+      <o-chart :data="normalData" :col-defs="normaColConfig" :tooltip="normalTootip">
+        <o-line :axis="normaAxis" :position="'date*value'"></o-line>
       </o-chart>
 
       <p class="item-desc">光滑的的折线图</p>
-      <o-chart
-        :data="normalData"
-        :col-defs="normaColConfig"
-        :position="'date*value'"
-        :tooltip="normalTootip"
-      >
+      <o-chart :data="normalData" :col-defs="normaColConfig" :tooltip="normalTootip">
         <!-- 如果为line类型：shape可选为'line', 'smooth', 'dash'   dash：虚线，smooth： 平滑线 -->
-        <o-line :axis="normaAxis" shape="smooth"></o-line>
+        <o-line :axis="normaAxis" shape="smooth" :position="'date*value'"></o-line>
       </o-chart>
 
       <p class="item-desc">带点的折线图</p>
-      <o-chart
-        :data="pointData"
-        :col-defs="pointColConfig"
-        :position="'day*value'"
-        :tooltip="pointTootip"
-      >
-        <o-line :axis="pointAxis" type="point"></o-line>
+      <o-chart :data="pointData" :col-defs="pointColConfig" :tooltip="pointTootip">
+        <o-line :axis="pointAxis" type="point" :position="'day*value'"></o-line>
       </o-chart>
       <!-- 如果为point类型：shape可选为'circle', 'hollowCircle', 'rect' 默认为 'circle'-->
 
       <p class="item-desc">光滑的带点折线图</p>
-      <o-chart
-        :data="pointData"
-        :col-defs="pointColConfig"
-        :position="'day*value'"
-        :tooltip="pointTootip"
-      >
-        <o-line :axis="pointAxis" type="point" shape="smooth"></o-line>
+      <o-chart :data="pointData" :col-defs="pointColConfig" :tooltip="pointTootip">
+        <o-line :axis="pointAxis" type="point" shape="smooth" :position="'day*value'"></o-line>
       </o-chart>
     </div>
   </div>
@@ -71,23 +51,21 @@ export default {
         }
       },
       normalTootip: {
-        disable: false,
-        config: {
-          //提示信息
-          custom: true,
-          showXTip: true,
-          showYTip: true,
-          snap: true,
-          crosshairsType: "xy",
-          crosshairsStyle: {
-            lineDash: [2]
-          }
+        //提示信息
+        custom: true,
+        showXTip: true,
+        showYTip: true,
+        snap: true,
+        crosshairsType: "xy",
+        crosshairsStyle: {
+          lineDash: [2]
         }
       },
-      normaAxis: {
-        //对坐标轴配置
-        fieldName: "date",
-        config: {
+      normaAxis: [
+        //必须传入array类型
+        {
+          //对date坐标轴配置
+          fieldName: "date",
           label: function(text, index, total) {
             var textCfg = {};
             if (index === 0) {
@@ -98,7 +76,7 @@ export default {
             return textCfg;
           }
         }
-      },
+      ],
 
       //带点的折线图数据
       pointData: LINE.pointLine,
@@ -114,20 +92,17 @@ export default {
       },
       //提示信息
       pointTootip: {
-        disable: false,
-        config: {
-          showCrosshairs: true,
-          showItemMarker: false,
-          onShow: function onShow(ev) {
-            var items = ev.items;
-            items[0].name = null;
-            items[0].value = "$ " + items[0].value;
-          }
+        showCrosshairs: true,
+        showItemMarker: false,
+        onShow: function onShow(ev) {
+          var items = ev.items;
+          items[0].name = null;
+          items[0].value = "$ " + items[0].value;
         }
       },
-      pointAxis: {
-        fieldName: "day",
-        config: {
+      pointAxis: [
+        {
+          fieldName: "day",
           label: function label(text, index, total) {
             var textCfg = {};
             if (index === 0) {
@@ -138,7 +113,7 @@ export default {
             return textCfg;
           }
         }
-      }
+      ]
     };
   }
 };

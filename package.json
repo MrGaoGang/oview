@@ -1,6 +1,6 @@
 {
   "name": "oview",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A UI Library Vue.js project by lucky_vue_template",
   "main": "./dist/oview.min.js",
   "scripts": {

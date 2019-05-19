@@ -2,7 +2,8 @@
      pie: "pie",
      histogram:"histogram",
      line:"line",
-     radar:"radar"
+     radar:"radar",
+     point:"point"
  }
 
  const COLORS = [

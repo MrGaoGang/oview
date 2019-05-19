@@ -4,6 +4,9 @@ import Pie from "./components/chart/Pie.vue";
 import Histogram from "./components/chart/Histogram.vue";
 import Line from "./components/chart/Line.vue";
 
+import Radar from "./components/chart/Radar.vue";
+import Point from "./components/chart/Point.vue";
+
 
 
 const oView = {
@@ -11,10 +14,12 @@ const oView = {
   Chart,
   Pie,
   Line,
-  Histogram
+  Histogram,
+  Radar,
+  Point
 };
 
-const install = function(Vue) {
+const install = function (Vue) {
   if (install.install) {
     return;
   }
@@ -35,5 +40,14 @@ const ALL = {
   ...oView
 };
 
-export { install, Pie, Chart, Toast,Histogram,Line };
+export {
+  install,
+  Pie,
+  Chart,
+  Toast,
+  Histogram,
+  Line,
+  Radar,
+  Point
+};
 export default ALL;

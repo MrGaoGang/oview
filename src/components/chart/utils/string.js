@@ -9,8 +9,7 @@ function isEmpty(obj) {
         }
     }
 
-
-    return false;
+    return  false;
 }
 
 /**
