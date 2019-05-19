@@ -15,6 +15,7 @@
       ></o-point>
     </o-chart>
 
+
     <p class="item-desc">气泡图</p>
     <o-chart
       :data="bubbleData"
