@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="header">
+      <img src="./images/logo.png">
+      <span>oview 移动端图表库</span>
+    </div>
+
+    <p class="desc">oview是基于F2封装的一套Vue移动端图表库。</p>
     <div v-for="item in datas" :key="item.title" class="mobile-nav__item">
       <div class="cell">
         <router-link :to="item.router" class="title">{{item.title}}</router-link>
@@ -10,6 +16,7 @@
 </template>
 
 <script>
+import Logo from "./Logo";
 const datas = [
   {
     title: "饼状图",
@@ -35,6 +42,11 @@ const datas = [
     title: "散点图/气泡图",
     img: require("./images/point.png"),
     router: "/point"
+  },
+   {
+    title: "面积图",
+    img: require("./images/area.png"),
+    router: "/area"
   }
 ];
 export default {
@@ -42,9 +54,34 @@ export default {
     return {
       datas: datas
     };
+  },
+  components: {
+    Logo
   }
 };
 </script>
+
+<style scoped>
+.header {
+  font-size: 26px;
+  font-weight: 500;
+  margin-left: 15px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.header img {
+  width: 36px;
+  height: 28px;
+  margin-right: 20px;
+}
+.desc {
+  font-size: 14px;
+  color: #7d7e80;
+  margin: 10px 20px 30px 40px;
+}
+</style>
 
 <style >
 .mobile-nav__item {

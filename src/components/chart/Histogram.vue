@@ -17,12 +17,7 @@ export default {
         };
       }
     },
-    adjust: {
-      type: Object,
-      default: function() {
-        return {};
-      }
-    }
+  
   },
   mounted() {
     this.gotoChart(CHART_TYPE.histogram);

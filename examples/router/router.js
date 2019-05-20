@@ -29,6 +29,11 @@ const routes = [{
         path: '/point',
         name: "Point",
         component: () => import("../components/chart/Point")
+    },
+    {
+        path: '/area',
+        name: "area",
+        component: () => import("../components/chart/Area")
     }
 
 ]

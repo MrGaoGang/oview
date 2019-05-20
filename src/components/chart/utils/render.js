@@ -30,7 +30,7 @@ function renderPie({
         .position(position)
         .color(colorFieldName,
             colors)
-        .adjust('stack').style({
+        .adjust(options.adjust).style({
             lineWidth: 1,
             stroke: '#fff',
             lineJoin: 'round',
@@ -101,15 +101,33 @@ function renderHistogram({
  */
 function renderLine({
     chart,
+    colors,
     position,
+    colorFieldName,
     options
 }) {
 
-    chart.line({
-        connectNulls: true // 配置，连接空值数据
-    }).position(position).shape(options.shape).animate(options.animate).style(options.chartStyle);
+    if (options.isArea) {
+        let area = chart.area().position(position);
+        area.shape(options.shape).animate(options.animate).style(options.chartStyle).adjust(options.adjust);
+        if (options.isMutiLine) {
+            area.color(colorFieldName, colors);
+        }
+    }
+    let line = chart.line({
+        connectNulls: options.showNulls // 配置，连接空值数据
+    }).position(position);
+    line.shape(options.shape).animate(options.animate).style(options.chartStyle).adjust(options.adjust);
+    if (options.isMutiLine) {
+        line.color(colorFieldName, colors);
+    }
     if (options.type == "point") {
-        chart.point().position(position).shape(options.shape).animate(options.animate).style(options.chartStyle);
+        let point = chart.point().position(position);
+        point.shape(options.shape).animate(options.animate).style(options.chartStyle).adjust(options.adjust);
+
+        if (options.isMutiLine) {
+            point.color(colorFieldName, colors);
+        }
     }
 }
 
@@ -148,12 +166,12 @@ function renderPoint({
     options
 }) {
 
-  let obj=  chart.point().position(position);
+    let obj = chart.point().position(position);
 
-  if(!isEmpty(options.size.fieldName)){
-      obj.size(options.size.fieldName,options.size.callback());
-  }
-  obj.shape(options.shape).color(colorFieldName, colors).animate(options.animate).style(options.chartStyle);
+    if (!isEmpty(options.size.fieldName)) {
+        obj.size(options.size.fieldName, options.size.callback());
+    }
+    obj.shape(options.shape).color(colorFieldName, colors).animate(options.animate).style(options.chartStyle);
 }
 
 export {

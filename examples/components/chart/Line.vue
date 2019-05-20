@@ -22,6 +22,11 @@
       <o-chart :data="pointData" :col-defs="pointColConfig" :tooltip="pointTootip">
         <o-line :axis="pointAxis" type="point" shape="smooth" :position="'day*value'"></o-line>
       </o-chart>
+
+      <p class="item-desc">层叠的带点光滑折线图</p>
+      <o-chart :data="mutiData" :col-defs="mutiColConfig" >
+        <o-line is-area is-muti-line  type="point" shape="smooth" :position="'year*value'" color-field='country'></o-line>
+      </o-chart>
     </div>
   </div>
 </template>
@@ -113,7 +118,14 @@ export default {
             return textCfg;
           }
         }
-      ]
+      ],
+
+      mutiData: LINE.mutiLine,
+      mutiColConfig: {
+        year: {
+          range: [0, 1]
+        }
+      }
     };
   }
 };

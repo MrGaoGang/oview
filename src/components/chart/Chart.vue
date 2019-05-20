@@ -37,6 +37,10 @@ export default {
       type: String,
       default: "#fff"
     },
+    //度量 Scale，是数据空间到图形空间的转换桥梁，负责原始数据到 [0, 1] 区间数值的相互转换工作。针对不同的数据类型对应不同类型的度量。
+    scale:{
+      type:Object
+    },
 
     customRender: {
       //是否自定义render，类型有:prevent，完全自定义,extra：在已有渲染的基础上自定义
@@ -71,8 +75,9 @@ export default {
       type: Array,
       required: true
     },
+          //提供的数据源，每一个字段的配置
+
     colDefs: {
-      //提供的数据源，每一个字段的配置
       type: Object,
       default: function() {
         return {};
@@ -173,6 +178,7 @@ export default {
       this.setTooltip();
 
       chart.source(this.chartData, this.colDefs);
+      chart.scale(this.scale);
       if (this.customRender === "extra") {
         this.$emit("on-render", { chart });
       }

@@ -43,6 +43,15 @@ export default {
                 };
             }
         },
+        //数据调整
+        adjust: {
+            type: Object,
+            default: function () {
+                return {
+                    type:"stack"
+                };
+            }
+        },
 
         options: Object, //一些额外的配置
     },
