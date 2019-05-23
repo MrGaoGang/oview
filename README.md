@@ -1,8 +1,10 @@
 
-
+<p  align="center">
 <div style="display:flex;align-items:center;justify-content:center;flex-direction: column;margin-bottom:40px;">
+    <p  align="center">
 <img src="https://github.com/MrGaoGang/oview/blob/master/examples/components/images/logo.png?raw=true">
-<p style="font-size: 28px;font-weight: 500;">oView Vue.js移动端图表库</p>
+<p style="font-size: 28px;font-weight: 500;"  align="center">oView Vue.js移动端图表库</p>
+    </p>
 
 <div style="display:flex;justify-content:center;">
 
@@ -18,12 +20,9 @@
 <img src="https://img.shields.io/badge/%E5%AE%98%E6%96%B9%E7%A4%BA%E4%BE%8B-%E6%95%88%E6%9E%9C%E5%9B%BE-%232d8cf0.svg"/>
 
 </a>
-
-
-
-
 </div>
 </div>
+</p>
 
 > oView是基于 [蚂蚁金服F2](https://www.yuque.com/antv/f2/getting-started)图表库的二次封装，以便于Vue.js开发者在移动端和PC端更好进行图表的展示。
 
