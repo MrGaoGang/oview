@@ -52,7 +52,7 @@ npm install oview --save
 
 - **oview图表色彩鲜艳**
 
-> 色彩主要使用F2官方建议色彩，如需自定义色彩可使用:color="yourColors"传入即可。（后续会详细讲解）
+> 色彩主要使用F2官方建议色彩，如需自定义色彩可使用:color="yourColors"传入即可。（详细请见[oview文档](https://mrgaogang.github.io/oview/docs)）
 
 <div style="display:flex;justify-content:space-around;">
 
