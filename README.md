@@ -57,9 +57,9 @@ npm install oview --save
 > 色彩主要使用F2官方建议色彩，如需自定义色彩可使用:color="yourColors"传入即可。（后续会详细讲解）
 
 <div style="display:flex;justify-content:space-around;">
-<img src="../images/oview_main.png" style="width:300px;height:600px"/>
+<img src="https://github.com/MrGaoGang/oview/blob/master/images/oview_main.png?raw=true" style="width:300px;height:600px"/>
 
-<img src="../images/oview_pie.png" style="width:300px;height:600px"/>
+<img src="https://github.com/MrGaoGang/oview/blob/master/images/oview_pie.png?raw=true" style="width:300px;height:600px"/>
 
 </div>
 
