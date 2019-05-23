@@ -60,8 +60,7 @@ npm install oview --save
 
 </div>
 
-<table>
-      <tbody>
+<p align="center">
         <tr>
           <td align="center" valign="middle">
             <a href="https://mrgaogang.github.io/oview/docs" target="_blank">
@@ -74,6 +73,4 @@ npm install oview --save
             </a>
           </td>
         </tr>
-      </tbody>
-</table>
-
+</p>
