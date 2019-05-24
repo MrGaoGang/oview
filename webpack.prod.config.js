@@ -22,7 +22,6 @@ module.exports = merge(webpackBaseConfig, {
     filename: "./oview.min.js", //输出文件名
     library: "oview"
   },
-  devtool:"source-map",
   externals: {
     vue: {
       root: "Vue",
