@@ -18,6 +18,7 @@
         </a>
 </tr>
 
+<img src="https://github.com/MrGaoGang/oview/blob/master/examples/components/images/qrcode.png?raw=true" width="180" height="180" >
 </p>
 
 
