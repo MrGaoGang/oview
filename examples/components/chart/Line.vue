@@ -24,8 +24,15 @@
       </o-chart>
 
       <p class="item-desc">层叠的带点光滑折线图</p>
-      <o-chart :data="mutiData" :col-defs="mutiColConfig" >
-        <o-line is-area is-muti-line  type="point" shape="smooth" :position="'year*value'" color-field='country'></o-line>
+      <o-chart :data="mutiData" :col-defs="mutiColConfig">
+        <o-line
+          is-area
+          is-muti-line
+          type="point"
+          shape="smooth"
+          :position="'year*value'"
+          color-field="country"
+        ></o-line>
       </o-chart>
     </div>
   </div>
@@ -127,6 +134,17 @@ export default {
         }
       }
     };
+  },
+  mounted() {
+    //模拟修改数据，数据变化显示
+    setInterval(() => {
+      if (this.normalData[0].value < 200) {
+        this.normalData.splice(0, 1, {
+          date: "2017-06-05",
+          value: this.normalData[0].value + 10
+        });
+      }
+    }, 2000);
   }
 };
 </script>
