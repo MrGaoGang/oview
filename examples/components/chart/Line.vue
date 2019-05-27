@@ -48,6 +48,7 @@ export default {
   },
   data() {
     return {
+      timer: null,
       normalData: LINE.lineNormal, //正常折线图的数据
       normaColConfig: {
         //对每个字段配置
@@ -137,7 +138,7 @@ export default {
   },
   mounted() {
     //模拟修改数据，数据变化显示
-    setInterval(() => {
+    this.timer = setInterval(() => {
       if (this.normalData[0].value < 200) {
         this.normalData.splice(0, 1, {
           date: "2017-06-05",
@@ -145,6 +146,11 @@ export default {
         });
       }
     }, 2000);
+  },
+  destroyed(){
+    if(this.timer!=null){
+      clearInterval(this.timer);
+    }
   }
 };
 </script>
