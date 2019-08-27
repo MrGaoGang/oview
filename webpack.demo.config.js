@@ -12,12 +12,9 @@ var VueLoaderPlugin = require("vue-loader/lib/plugin");
 //基础配置
 //清空构建目录
 var clearWebpack = require("clean-webpack-plugin");
-
 var OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-var CompressionWebpackPlugin = require("compression-webpack-plugin");
 
-var productionGzipExtensions = ['js', 'css', 'html']
 module.exports = {
     entry:{
         main: './examples/main.js'
@@ -134,12 +131,24 @@ module.exports = {
             filename: "./css/[name].[hash].css",
             allChunks: true
         }),
-        new webpack.DefinePlugin({
-            //定义当前的Node环境为生产环境
-            "process.env": {
-                NODE_ENV: '"production"'
-            }
-        }),
+
+        new OptimizeCSSAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require("cssnano"),
+            // cssProcessorOptions: cssnanoOptions,
+            cssProcessorPluginOptions: {
+              preset: [
+                "default",
+                {
+                  discardComments: {
+                    removeAll: true
+                  },
+                  normalizeUnicode: false
+                }
+              ]
+            },
+            canPrint: true
+          }),
 
         new HtmlwebpackPlugin({
             //指定构建生成之后的html
@@ -170,23 +179,7 @@ module.exports = {
             }
         }),
         new VueLoaderPlugin(), //使用vue必须要加的哦
-        new OptimizeCSSAssetsPlugin({
-            assetNameRegExp: /\.css$/g,
-            cssProcessor: require("cssnano"),
-            // cssProcessorOptions: cssnanoOptions,
-            cssProcessorPluginOptions: {
-                preset: [
-                    "default",
-                    {
-                        discardComments: {
-                            removeAll: true
-                        },
-                        normalizeUnicode: false
-                    }
-                ]
-            },
-            canPrint: true
-        }),
+   
 
 
     ]

@@ -6,7 +6,7 @@ import Line from "./components/chart/Line.vue";
 
 import Radar from "./components/chart/Radar.vue";
 import Point from "./components/chart/Point.vue";
-
+import {INTERACTION_TYPE} from "./components/chart/utils/constants"
 
 
 const oView = {
@@ -16,7 +16,8 @@ const oView = {
   Line,
   Histogram,
   Radar,
-  Point
+  Point,
+  INTERACTION_TYPE
 };
 
 const install = function (Vue) {
@@ -48,6 +49,7 @@ export {
   Histogram,
   Line,
   Radar,
-  Point
+  Point,
+  INTERACTION_TYPE
 };
 export default ALL;

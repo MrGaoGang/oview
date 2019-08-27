@@ -1079,11 +1079,25 @@
  }
 
 
+ function getMockLineIntercation(){
+    var data = [];
+    var step = Math.PI / 4;
+    for (var x = -25; x < 25; x += step) {
+      data.push({
+        x: x,
+        y: Math.sin(x)
+      });
+    }
+
+    return data;
+ }
+
  export {
      LINE,
      HISTOGRAM,
      PIE,
      RADAR,
      POINT,
-     AREA
+     AREA,
+     getMockLineIntercation
  }

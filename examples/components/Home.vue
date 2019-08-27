@@ -47,6 +47,11 @@ const datas = [
     title: "面积图",
     img: require("./images/area.png"),
     router: "/area"
+  },
+  {
+    title: "图表平移/缩放",
+    img: require("./images/inter.png"),
+    router: "/interaction"
   }
 ];
 export default {

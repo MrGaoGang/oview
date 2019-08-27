@@ -34,6 +34,11 @@ const routes = [{
         path: '/area',
         name: "area",
         component: () => import("../components/chart/Area")
+    },
+    {
+        path: '/interaction',
+        name: "interaction",
+        component: () => import("../components/chart/Interaction")
     }
 
 ]

@@ -48,11 +48,11 @@ export default {
             type: Object,
             default: function () {
                 return {
-                    type:"stack"
+                    type: "stack"
                 };
             }
         },
-
+  
         options: Object, //一些额外的配置
     },
 

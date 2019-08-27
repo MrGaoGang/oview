@@ -6,7 +6,7 @@
         <o-line :axis="normaAxis" :position="'date*value'"></o-line>
       </o-chart>
 
-      <p class="item-desc">光滑的的折线图</p>
+      <p class="item-desc">光滑的的折线图/曲线图</p>
       <o-chart :data="normalData" :col-defs="normaColConfig" :tooltip="normalTootip">
         <!-- 如果为line类型：shape可选为'line', 'smooth', 'dash'   dash：虚线，smooth： 平滑线 -->
         <o-line :axis="normaAxis" shape="smooth" :position="'date*value'"></o-line>
@@ -34,6 +34,8 @@
           color-field="country"
         ></o-line>
       </o-chart>
+
+    
     </div>
   </div>
 </template>
@@ -133,8 +135,14 @@ export default {
         year: {
           range: [0, 1]
         }
-      }
+      },
+
+   
     };
+  },
+  methods: {
+
+   
   },
   mounted() {
     //模拟修改数据，数据变化显示
@@ -147,8 +155,8 @@ export default {
       }
     }, 2000);
   },
-  destroyed(){
-    if(this.timer!=null){
+  destroyed() {
+    if (this.timer != null) {
       clearInterval(this.timer);
     }
   }
