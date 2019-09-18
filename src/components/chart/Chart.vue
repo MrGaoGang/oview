@@ -177,12 +177,13 @@ export default {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
 
+      let defaultConfig = {};
       let chart = new F2.Chart({
         el: this.$refs.chart,
         width: this.width || windowWidth,
         height: this.height ? this.height : 300,
         pixelRatio: this.$devicePixelRatio || window.devicePixelRatio,
-        ...Object.assign(this.chartConfig)
+        ...Object.assign(this.chartConfig,defaultConfig)
       });
 
       this.chart = chart;

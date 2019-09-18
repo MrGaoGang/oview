@@ -5,6 +5,7 @@ import {
     getX
 } from "./string"
 export default {
+    abstract: true,
     props: {
         position: {
             type: String,
@@ -52,10 +53,13 @@ export default {
                 };
             }
         },
-  
+
         options: Object, //一些额外的配置
     },
 
+    render() {
+        return null;
+    },
     methods: {
         gotoChart(type) {
             this.$nextTick(() => {

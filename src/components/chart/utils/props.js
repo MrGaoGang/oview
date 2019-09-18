@@ -5,7 +5,10 @@ export default {
         default: 300
     },
     chartConfig: {
-        type: Object
+        type: Object,
+        default () {
+            return {}
+        }
     },
     backgroundColor: {
         type: String,
@@ -13,7 +16,10 @@ export default {
     },
     //度量 Scale，是数据空间到图形空间的转换桥梁，负责原始数据到 [0, 1] 区间数值的相互转换工作。针对不同的数据类型对应不同类型的度量。
     scale: {
-        type: Object
+        type: Object,
+        default () {
+            return {}
+        }
     },
 
     customRender: {

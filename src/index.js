@@ -1,11 +1,10 @@
 import Toast from "./components/toast";
 import Chart from "./components/chart/Chart.vue";
-import Pie from "./components/chart/Pie.vue";
-import Histogram from "./components/chart/Histogram.vue";
-import Line from "./components/chart/Line.vue";
-
-import Radar from "./components/chart/Radar.vue";
-import Point from "./components/chart/Point.vue";
+import Pie from "./components/chart/Pie.js";
+import Histogram from "./components/chart/Histogram.js";
+import Line from "./components/chart/Line.js";
+import Radar from "./components/chart/Radar.js";
+import Point from "./components/chart/Point.js";
 import {INTERACTION_TYPE} from "./components/chart/utils/constants"
 
 

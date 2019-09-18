@@ -1,15 +1,14 @@
-<template></template>
-
-<script>
 import mixin from "./utils/mixin";
-import { CHART_TYPE } from "./utils/constants";
+import {
+  CHART_TYPE
+} from "./utils/constants";
 export default {
   mixins: [mixin],
   props: {
- 
+
     shape: {
       type: String,
-      default() {
+      default () {
         return "circle";
       }
     }
@@ -18,7 +17,3 @@ export default {
     this.gotoChart(CHART_TYPE.point);
   }
 };
-</script>
-
-<style>
-</style>

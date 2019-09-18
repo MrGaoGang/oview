@@ -1,7 +1,4 @@
-<template></template>
 
-
-<script>
 import mixin from "./utils/mixin";
 import { CHART_TYPE } from "./utils/constants";
 
@@ -43,7 +40,3 @@ export default {
     this.gotoChart(CHART_TYPE.line);
   }
 };
-</script>
-
-<style>
-</style>
