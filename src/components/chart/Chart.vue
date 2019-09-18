@@ -16,6 +16,7 @@ import F2 from "@antv/f2/lib/index-all";
 import { getX, isEmpty } from "./utils/string";
 import props from "./utils/props.js";
 import scrollConfig, { setInteraction } from "./utils/scroll.js";
+import { throttle } from "./utils/utils.js";
 import {
   renderPie,
   renderHistogram,
@@ -181,7 +182,7 @@ export default {
         width: this.width || windowWidth,
         height: this.height ? this.height : 300,
         pixelRatio: this.$devicePixelRatio || window.devicePixelRatio,
-        ...this.chartConfig
+        ...Object.assign(this.chartConfig)
       });
 
       this.chart = chart;
@@ -201,7 +202,7 @@ export default {
   },
   mounted() {
     this.render();
-    window.addEventListener("resize", this.reRender);
+    window.addEventListener("resize", throttle(this.reRender, 300));
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.reRender);
