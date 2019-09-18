@@ -15,6 +15,7 @@ export default {
 body {
   background-color: #f2f3f5;
   color: #323233;
+  margin: 0px;
 }
 
 .item-desc{
