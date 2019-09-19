@@ -1,8 +1,12 @@
 node_modules/
 examples/
-
-
+docs/
+index.html
+images/
+_book/
 webpack.base.config.js
 webpack.dev.config.js
 webpack.prod.config.js
+webpack.demo.config.js
+
 babel.config.js
