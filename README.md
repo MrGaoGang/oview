@@ -31,6 +31,12 @@
 
 > oView是基于 [蚂蚁金服F2](https://www.yuque.com/antv/f2/getting-started)图表库的二次封装，以便于Vue.js开发者在移动端和PC端更好进行图表的展示。
 
+### vue插件
+
+```bash
+vue add oview
+
+```
 
 ### NPM安装
 
