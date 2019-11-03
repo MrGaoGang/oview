@@ -35,6 +35,7 @@
 
 ```bash
 vue add oview
+vue invoke vue-cli-plugin-oview
 
 ```
 
