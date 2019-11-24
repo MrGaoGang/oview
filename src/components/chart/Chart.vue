@@ -1,11 +1,7 @@
 <template>
-  <div
-    :style="{
-      backgroundColor: backgroundColor,
-      width: width + 'px',
-      height: height + 'px'
-    }"
-  >
+  <div :style="{
+      backgroundColor: backgroundColor
+    }">
     <canvas ref="chart" height="300" class="noselect"></canvas>
     <slot></slot>
   </div>
@@ -183,7 +179,7 @@ export default {
         width: this.width || windowWidth,
         height: this.height ? this.height : 300,
         pixelRatio: this.$devicePixelRatio || window.devicePixelRatio,
-        ...Object.assign(this.chartConfig,defaultConfig)
+        ...Object.assign(this.chartConfig, defaultConfig)
       });
 
       this.chart = chart;
