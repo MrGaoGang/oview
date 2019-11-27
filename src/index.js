@@ -5,7 +5,9 @@ import Histogram from "./components/chart/Histogram.js";
 import Line from "./components/chart/Line.js";
 import Radar from "./components/chart/Radar.js";
 import Point from "./components/chart/Point.js";
-import {INTERACTION_TYPE} from "./components/chart/utils/constants"
+import {
+  INTERACTION_TYPE
+} from "./components/chart/utils/constants"
 
 
 const oView = {
@@ -25,7 +27,7 @@ const install = function (Vue) {
   }
 
   Object.keys(oView).forEach(each => {
-    Vue.component(each, oView[each]);
+    Vue.component("o-" + each.toLowerCase(), oView[each]);
   });
 
   Vue.prototype.$toast = Toast;
