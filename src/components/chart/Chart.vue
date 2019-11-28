@@ -2,7 +2,7 @@
   <div :style="{
       backgroundColor: backgroundColor
     }">
-    <canvas ref="chart" height="300" class="noselect"></canvas>
+    <canvas ref="chart" :style="chartStyle" class="noselect"></canvas>
     <slot></slot>
   </div>
 </template>
@@ -12,7 +12,7 @@ import F2 from "@antv/f2/lib/index-all";
 import { getX, isEmpty } from "./utils/string";
 import props from "./utils/props.js";
 import scrollConfig, { setInteraction } from "./utils/scroll.js";
-import { throttle } from "./utils/utils.js";
+import { throttle, getValue } from "./utils/utils.js";
 import {
   renderPie,
   renderHistogram,
@@ -53,6 +53,12 @@ export default {
         });
       }
       return this.data;
+    },
+    chartStyle() {      
+      return {
+        width: getValue(this.width),
+        height: getValue(this.height)
+      };
     }
   },
   methods: {
@@ -176,8 +182,6 @@ export default {
       let defaultConfig = {};
       let chart = new F2.Chart({
         el: this.$refs.chart,
-        width: this.width || windowWidth,
-        height: this.height ? this.height : 300,
         pixelRatio: this.$devicePixelRatio || window.devicePixelRatio,
         ...Object.assign(this.chartConfig, defaultConfig)
       });
