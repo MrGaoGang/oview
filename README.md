@@ -43,9 +43,19 @@ vue invoke vue-cli-plugin-oview
 
 ```
 npm install oview --save
+//或者使用yarn
+yarn add oview
 
 ```
-> 推荐使用npm安装，享受安装依赖包带来的便利，同时也建议使用个人开发Vue项目使用的 [Vue SPA 模板](https://github.com/MrGaoGang/lucky_vue_template);当然Vue官方提供的cli模板固然优秀，但是由于加重了学习成本，所以对有webpack开发经验的同学使用此模板，可尽快入手。
+**使用**
+
+```js
+//main.js中
+import oView from "oview";
+Vue.use(oView);
+```
+oview默认会使用:`o-chart`,`o-line`的方式全局注册组件。使用时，请记得使用`o-x`的方式哦
+
 
 
 
