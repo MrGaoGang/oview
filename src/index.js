@@ -17,8 +17,7 @@ const oView = {
   Line,
   Histogram,
   Radar,
-  Point,
-  INTERACTION_TYPE
+  Point
 };
 
 const install = function (Vue) {
@@ -39,7 +38,9 @@ if (typeof window !== "undefined" && window.Vue) {
 
 const ALL = {
   install,
-  ...oView
+  ...oView,
+  INTERACTION_TYPE
+
 };
 
 export {
