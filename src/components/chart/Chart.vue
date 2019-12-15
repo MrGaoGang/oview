@@ -29,7 +29,8 @@ export default {
     return {
       chartType: "", //图表的类型
       datas: this.data,
-      position: null
+      position: null,
+      chart: null
     };
   },
   watch: {
@@ -54,7 +55,7 @@ export default {
       }
       return this.data;
     },
-    chartStyle() {      
+    chartStyle() {
       return {
         width: getValue(this.width),
         height: getValue(this.height)
@@ -207,6 +208,7 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.reRender);
+    this.chart && this.chart.destroy();
   }
 };
 </script>
