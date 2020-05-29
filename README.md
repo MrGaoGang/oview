@@ -2,7 +2,7 @@
 
 <div style="display:flex;align-items:center;justify-content:center;flex-direction: column;margin-bottom:40px;">
     <p  align="center">
-<img src="https://github.com/MrGaoGang/oview/blob/master/examples/components/images/logo.png?raw=true">
+<img src="./images/logo.png?raw=true">
 <h3 align="center">oView Vue.js移动端图表库</h3>
     </p>
 
@@ -23,7 +23,7 @@
 <p align="center">
 
 
-<img src="https://github.com/MrGaoGang/oview/blob/master/examples/components/images/qrcode.png?raw=true" width="180" height="180" >
+<img src="./images/qrcode.png?raw=true" width="180" height="180" >
 </p>
 
 </div>
@@ -83,12 +83,12 @@ oview默认会使用:`o-chart`,`o-line`的方式全局注册组件。使用时�
         <tr>
           <td align="center" valign="middle">
             <a href="https://mrgaogang.github.io/oview/docs" target="_blank">
-            <img src="https://github.com/MrGaoGang/oview/blob/master/images/oview_main.png?raw=true" width="300" height="600"/>
+            <img src="./images/oview_main.png?raw=true" width="300" height="600"/>
             </a>
           </td>
           <td align="center" valign="middle">
               <a href="https://mrgaogang.github.io/oview/docs" target="_blank">
-            <img src="https://github.com/MrGaoGang/oview/blob/master/images/oview_pie.png?raw=true" width="300" height="600"/>
+            <img src="./images/oview_pie.png?raw=true" width="300" height="600"/>
             </a>
           </td>
         </tr>
