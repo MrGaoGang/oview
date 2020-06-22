@@ -23,7 +23,7 @@
 <p align="center">
 
 
-<img src="./images/qrcode.png?raw=true" width="180" height="180" >
+<img src="https://mrgaogang.github.io/images/oview/qrcode.png" width="180" height="180" >
 </p>
 
 </div>
