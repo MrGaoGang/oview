@@ -204,10 +204,8 @@ export default {
   },
   mounted() {
     this.render();
-    window.addEventListener("resize", throttle(this.reRender, 300));
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.reRender);
     this.chart && this.chart.destroy();
   }
 };
