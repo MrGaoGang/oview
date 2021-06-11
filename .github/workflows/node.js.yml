@@ -41,5 +41,5 @@ jobs:
         run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
         
       - name: Tencent COS Upload
-        run: coscmd upload -rs  ./docs /oview --ignore "./.git/*"
+        run: coscmd upload -rs  ./docs /oview/docs --ignore "./.git/*"
     
