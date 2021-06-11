@@ -75,7 +75,7 @@ oview默认会使用:`o-chart`,`o-line`的方式全局注册组件。使用时�
 
 - **oview图表色彩鲜艳**
 
-> 色彩主要使用F2官方建议色彩，如需自定义色彩可使用:color="yourColors"传入即可。（详细请见[oview文档](https://mrgaogang.github.io/oview/docs)）
+> 色彩主要使用F2官方建议色彩，如需自定义色彩可使用:color="yourColors"传入即可。（详细请见[oview文档](http://blog.gaogangsever.cn/article/oview/)）
 
 
 
