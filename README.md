@@ -9,10 +9,10 @@
 
 <p align="center">
  <tr>
-        <a href="https://mrgaogang.github.io/article/oview/">
+        <a href="http://blog.gaogangsever.cn/article/oview/">
             <img src="https://img.shields.io/badge/oView-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3-%232d8cf0.svg" />
         </a>
-        <a href="https://mrgaogang.github.io/oview/docs/#/" style="margin-left:30px;">
+        <a href="http://blog.gaogangsever.cn/article/oview/" style="margin-left:30px;">
             <img
                 src="https://img.shields.io/badge/%E5%AE%98%E6%96%B9%E7%A4%BA%E4%BE%8B-%E6%95%88%E6%9E%9C%E5%9B%BE-%232d8cf0.svg" />
         </a>
