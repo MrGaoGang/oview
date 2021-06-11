@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: 自动部署样例
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Build
+        run: npm install && npm run demo
+        
+      - name: Show Dir
+        run: ls
+        
+      - name: Install Tencent coscmd
+        run:  sudo pip install coscmd
+        
+      - name: Tencent Configure coscmd
+        env:
+          SECRET_ID: ${{secrets.SECRET_ID}}
+          SECRET_KEY: ${{secrets.SECRET_KEY}}
+          BUCKET: ${{secrets.BUCKET}}
+          REGION: ${{secrets.REGION}}
+        run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
+        
+      - name: Tencent COS Upload
+        run: coscmd upload -rs  ./docs /oview --ignore "./.git/*"
+    
