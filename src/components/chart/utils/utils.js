@@ -15,6 +15,28 @@ export function throttle(func, wait) {
     }
   };
 }
+
+export function debounce(func, wait, immediate) {
+  let timeout;
+  return function() {
+    let context = this;
+    let args = arguments;
+
+    if (timeout) clearTimeout(timeout);
+    if (immediate) {
+      let callNow = !timeout;
+      timeout = setTimeout(() => {
+        timeout = null;
+      }, wait);
+      if (callNow) func.apply(context, args);
+    } else {
+      timeout = setTimeout(() => {
+        func.apply(context, args);
+      }, wait);
+    }
+  };
+}
+
 /**
  * 获取默认宽高
  * @param {*} data 

@@ -1,7 +1,9 @@
 <template>
-  <div :style="{
-      backgroundColor: backgroundColor
-    }">
+  <div
+    :style="{
+      backgroundColor: backgroundColor,
+    }"
+  >
     <canvas ref="chart" :style="chartStyle" class="noselect"></canvas>
     <slot></slot>
   </div>
@@ -12,13 +14,13 @@ import F2 from "@antv/f2/lib/index-all";
 import { getX, isEmpty } from "./utils/string";
 import props from "./utils/props.js";
 import scrollConfig, { setInteraction } from "./utils/scroll.js";
-import { throttle, getValue } from "./utils/utils.js";
+import { debounce, getValue } from "./utils/utils.js";
 import {
   renderPie,
   renderHistogram,
   renderLine,
   renderRadar,
-  renderPoint
+  renderPoint,
 } from "./utils/render.js";
 import { CHART_TYPE } from "./utils/constants.js";
 const Util = F2.Util;
@@ -30,7 +32,7 @@ export default {
       chartType: "", //图表的类型
       datas: this.data,
       position: null,
-      chart: null
+      chart: null,
     };
   },
   watch: {
@@ -41,14 +43,14 @@ export default {
         if (this.chart != null) {
           this.changeData();
         }
-      }
-    }
+      },
+    },
   },
   computed: {
     chartData() {
       //图表的数据,如果Wie饼状图需要加上一个常量
       if (this.chartType == CHART_TYPE.pie) {
-        return this.datas.slice().map(item => {
+        return this.datas.slice().map((item) => {
           item.data = "1";
           return item;
         });
@@ -58,9 +60,9 @@ export default {
     chartStyle() {
       return {
         width: getValue(this.width),
-        height: getValue(this.height)
+        height: getValue(this.height),
       };
-    }
+    },
   },
   methods: {
     onTouchstart(e) {
@@ -89,7 +91,7 @@ export default {
         colors: options.colors,
         position: options.position,
         colorFieldName: this.colorFieldName(options.colorField),
-        options: options
+        options: options,
       };
 
       //设置图形
@@ -114,7 +116,7 @@ export default {
 
       if (type != CHART_TYPE.pie) {
         if (options.axis.length > 0) {
-          options.axis.forEach(element => {
+          options.axis.forEach((element) => {
             if (!isEmpty(element.fieldName)) {
               chart.axis(element.fieldName, element);
             }
@@ -184,7 +186,7 @@ export default {
       let chart = new F2.Chart({
         el: this.$refs.chart,
         pixelRatio: this.$devicePixelRatio || window.devicePixelRatio,
-        ...Object.assign(this.chartConfig, defaultConfig)
+        ...Object.assign(this.chartConfig, defaultConfig),
       });
 
       this.chart = chart;
@@ -200,14 +202,14 @@ export default {
         return getX(this.position);
       }
       return colorField;
-    }
+    },
   },
   mounted() {
     this.render();
   },
   beforeDestroy() {
     this.chart && this.chart.destroy();
-  }
+  },
 };
 </script>
 

@@ -12,7 +12,11 @@
 
     <p class="item-desc">可点击的饼状图</p>
     <o-chart :data="data" :legend="legend">
-      <o-pie :pie-label="pieLabel()" :coord="coord" position="name*percent"></o-pie>
+      <o-pie
+        :pie-label="pieLabel()"
+        :coord="coord"
+        position="name*percent"
+      ></o-pie>
     </o-chart>
   </div>
 </template>
@@ -23,14 +27,14 @@ import { PIE } from "../utils/data";
 export default {
   components: {
     "o-chart": Chart,
-    "o-pie": Pie
+    "o-pie": Pie,
   },
   data() {
     return {
       data: PIE.data,
       legend: {
         position: "top",
-        align: "center" // align只有当position为top何bottom时有效
+        align: "center", // align只有当position为top何bottom时有效
         //verticalAlign:"middle",
       },
       coord: {
@@ -38,9 +42,9 @@ export default {
         options: {
           transposed: true, // 坐标系翻转
           radius: 0.85,
-          innerRadius: 0.618
-        }
-      }
+          innerRadius: 0.618,
+        },
+      },
     };
   },
   methods: {
@@ -48,23 +52,23 @@ export default {
       return {
         sidePadding: 30,
         activeShape: true,
-        label1: function(data) {
+        label1: function (data) {
           //第一个标签
           return {
             text: data.name,
             fill: "#343434",
-            fontWeight: "bold"
+            fontWeight: "bold",
           };
         },
-        label2: function(data) {
+        label2: function (data) {
           //第二个标签
           //如果不需要刻意删除label2
           return {
             text: data.percent * 100 + "%",
-            fill: "#999"
+            fill: "#999",
           };
         },
-        onClick: function(ev) {
+        onClick: function (ev) {
           //点击之后显示
           var data = ev.data;
           if (data) {
@@ -76,16 +80,46 @@ export default {
                 data.name +
                 '</p>\n      <p style="font-size: 18px;color: #343434;margin: 0;font-weight: bold;" class="label2">' +
                 data.percent * 100 +
-                "%</p>\n      </div>"
+                "%</p>\n      </div>",
             });
             ev.chart.repaint();
             // $('#title').text(data.type);
             // $('#money').text(data.money);
           }
-        }
+        },
       };
-    }
-  }
+    },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.data = [
+        {
+          name: "芳华222",
+          percent: 0.6,
+        },
+        {
+          name: "妖猫传",
+          percent: 0.2,
+        },
+        {
+          name: "机器之血",
+          percent: 0.18,
+        },
+        {
+          name: "心理罪",
+          percent: 0.15,
+        },
+        {
+          name: "寻梦环游记",
+          percent: 0.05,
+        },
+        {
+          name: "其他",
+          percent: 0.02,
+        },
+      ];
+    }, 3000);
+  },
 };
 </script>
 
