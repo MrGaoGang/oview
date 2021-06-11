@@ -115,7 +115,8 @@ module.exports = {
         path: path.join(__dirname, "./docs"), //指定输出目录
         libraryTarget: "umd", //输出为umd格式
         filename: "./js/[name].[hash].js", //输出文件名
-        chunkFilename: "./js/[name].[hash].chunk.js"
+        chunkFilename: "./js/[name].[hash].chunk.js",
+        publicPath:'./'
     },
 
     optimization: {
