@@ -3,7 +3,7 @@
 <div style="display:flex;align-items:center;justify-content:center;flex-direction: column;margin-bottom:40px;">
     <p  align="center">
 <img src="https://mrgaogang.github.io/images/oview/logo.png">
-<h3 align="center">oView Vue.js移动端图表库</h3>
+<h3 align="center">oView Vue2.js移动端图表库</h3>
     </p>
 
 
